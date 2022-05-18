@@ -1,0 +1,20 @@
+version: '3.1'
+services:
+  node:
+    image: docker/prom/node-exporter:latest
+    restart: always
+    ports:
+      - 9100:9100
+
+  grafana:
+    image: docker/grafana/grafana:latest
+    container_name: grafana
+    restart: always
+    ports:
+      - "3000:3000"
+    env_file:
+      - 'env.grafana'
+    user: "0"
+    volumes:
+      - /grafana:/var/lib/grafana
+~                                       
